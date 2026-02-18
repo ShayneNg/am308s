@@ -1,0 +1,12 @@
+node_modules/,
+.env,
+dist/,
+
+__pycache__/,
+.venv/,
+.env,
+
+/bin,
+/vendor,
+
+.DS_Store
