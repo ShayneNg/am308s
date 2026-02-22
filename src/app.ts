@@ -17,13 +17,20 @@ import { ChorusService } from './services/chorus.service.js';
 import { ChorusController } from './controllers/chorus.controller.js';
 import { chorusRoutes } from './routes/chorus.routes.js';
 
+// --- NEW: IMPORTS FOR INGEST DOMAIN ---
+import { IngestRepository } from './repositories/ingest.repository.js';
+import { IngestService } from './services/ingest.service.js';
+import { IngestController } from './controllers/ingest.controller.js';
+import { ingestRoutes } from './routes/ingest.routes.js';
+
 export function buildApp() {
   // Check if we are currently running tests
   const isTest = process.env.NODE_ENV === 'test';
 
   const app: FastifyInstance = Fastify({ 
     // Only enable logger if NOT in test mode
-    logger: isTest ? false : { level: 'info' } 
+    logger: isTest ? false : { level: 'info' } ,
+    disableRequestLogging: true, // This removes the "request completed" lines
   });
 
   // 1. // Register the plugin
@@ -39,14 +46,20 @@ export function buildApp() {
   diContainer.register({
     db: asValue(dbPool),
 
+    // Echo
     echoRepository: asClass(EchoRepository).singleton(),
     echoService: asClass(EchoService).singleton(),
     echoController: asClass(EchoController).singleton(),
-
-    // ADD CHORUS HERE:
+    
+    // Chorus
     chorusRepository: asClass(ChorusRepository).singleton(),
     chorusService: asClass(ChorusService).singleton(),
     chorusController: asClass(ChorusController).singleton(),
+
+    // Ingest (Milesight UG65)
+    ingestRepository: asClass(IngestRepository).singleton(),
+    ingestService: asClass(IngestService).singleton(),
+    ingestController: asClass(IngestController).singleton(),
   });
 
 
@@ -61,6 +74,11 @@ export function buildApp() {
         status: 'error',
         message: 'Data validation failed'
       });
+    }
+
+    // 2. Security Error
+    if (error.message === 'UNAUTHORIZED_GATEWAY') {
+      return reply.status(401).send({ status: 'error', message: 'Unauthorized: Invalid API Key' });
     }
 
     // 2. Chorus Not Found (404) <--- CHECK THIS STRING
@@ -89,6 +107,7 @@ export function buildApp() {
     // 3. Register Routes
   app.register(echoRoutes);
   app.register(chorusRoutes); // Register your new API
+  app.register(ingestRoutes); // <-- Register Ingest here
 
   return app;
 }

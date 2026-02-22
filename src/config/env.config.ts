@@ -17,5 +17,7 @@ export const config = {
     database: {
         url: process.env.DATABASE_URL as string,
         poolSize: parseInt(process.env.DB_POOL_SIZE || '10', 10),
-    }
+    } ,
+
+    gatewayApiKey: process.env.GATEWAY_API_KEY,
 };
