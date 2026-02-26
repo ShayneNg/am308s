@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { buildApp } from '../src/app.js';
+import { buildApp } from '../src/api/app.js';
 
 // 1. Mock the entire database module
 vi.mock('../src/infrastructure/database.js', () => ({

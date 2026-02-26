@@ -23,6 +23,10 @@ import { IngestService } from './services/ingest.service.js';
 import { IngestController } from './controllers/ingest.controller.js';
 import { ingestRoutes } from './routes/ingest.routes.js';
 
+// 2. Import SvelteKit handler (This is generated after build)
+// @ts-ignore
+import { handler } from '../../build/handler.js';
+
 export function buildApp() {
   // Check if we are currently running tests
   const isTest = process.env.NODE_ENV === 'test';
@@ -61,6 +65,12 @@ export function buildApp() {
     ingestService: asClass(IngestService).singleton(),
     ingestController: asClass(IngestController).singleton(),
   });
+
+  // --- REGISTER API ROUTES FIRST ---
+  // We prefix these so they don't collide with UI routes
+  app.register(echoRoutes, { prefix: '/api' });
+  app.register(chorusRoutes, { prefix: '/api' });
+  app.register(ingestRoutes, { prefix: '/api' });
 
 
   // GLOBAL ERROR HANDLER
@@ -104,10 +114,17 @@ export function buildApp() {
     });
   });
 
-    // 3. Register Routes
-  app.register(echoRoutes);
-  app.register(chorusRoutes); // Register your new API
-  app.register(ingestRoutes); // <-- Register Ingest here
+  // --- SVELTEKIT HANDOFF ---
+  // If the request isn't an API call, let SvelteKit handle it
+  app.use((req, res, next) => {
+    // If request starts with /api, it should have been caught by Fastify. 
+    // Otherwise, give it to SvelteKit.
+    if (req.url?.startsWith('/api')) {
+      next();
+    } else {
+      handler(req, res, next);
+    }
+  });
 
   return app;
 }

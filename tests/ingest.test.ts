@@ -1,5 +1,5 @@
 import { expect, it, describe, vi, beforeEach } from 'vitest';
-import { buildApp } from '../src/app.js';
+import { buildApp } from '../src/api/app.js';
 
 describe('Ingest API Suite', () => {
     let app: any;

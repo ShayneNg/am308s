@@ -10,17 +10,27 @@
   },
   "dependencies": {
     "@fastify/awilix": "^8.2.0",
+    "@fastify/middie": "^9.1.0",
+    "@sveltejs/adapter-node": "^0.0.18",
     "awilix": "^13.0.0",
     "dotenv": "^17.3.1",
     "fastify": "^5.7.4",
     "pg": "^8.18.0"
   },
   "devDependencies": {
+    "@iconify/svelte": "^5.2.1",
+    "@sveltejs/kit": "^2.53.2",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
     "@types/node": "^25.3.0",
     "@types/pg": "^8.16.0",
     "@vitest/coverage-v8": "^4.0.18",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.6",
+    "shadcn-svelte": "^1.1.1",
+    "tailwindcss": "^4.2.1",
     "tsx": "^4.19.2",
     "typescript": "^5.9.3",
+    "vite": "^7.3.1",
     "vitest": "^4.0.18"
   }
 }

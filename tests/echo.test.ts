@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildApp } from '../src/app.js';
+import { buildApp } from '../src/api/app.js';
 
 // Initialize the app once for the test suite
 const app = buildApp();
