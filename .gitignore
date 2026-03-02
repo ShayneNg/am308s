@@ -1,32 +1,41 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.env
-.venv/
-venv/
-ENV/
-
-# Node.js
+# --- Dependencies ---
 node_modules/
-npm-debug.log
-npm-error.log
+.pnpm-store/
+**/node_modules/
 
-# Git
-.git/
+# --- Environment & Secrets (CRITICAL) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
 
-# IDEs
+# --- Build Outputs ---
+dist/
+build/
+.svelte-kit/
+.turbo/
+*.tsbuildinfo
+
+# --- Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# --- Database & Prisma ---
+/packages/database/prisma/*.db
+/packages/database/prisma/*.db-journal
+# If you generate Prisma client to a custom path:
+# generated-client/
+
+# --- OS & IDE Files ---
+.DS_Store
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
 Thumbs.db
 
-# Logs and temp files
-logs/
-tmp/
-*.log
+# --- Testing ---
+coverage/
+.vitest/

@@ -1,0 +1,24 @@
+{
+  "name": "am308s",
+  "private": true,
+  "description": "IoT Dashboard and API for Shelly, Bobcat, and Milesight devices",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --recursive --parallel run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "db:generate": "pnpm --filter database run generate",
+    "db:push": "pnpm --filter database run push"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "turbo": "latest",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}
