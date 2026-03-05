@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { config } from '../config/env.config.js';
+import { config } from '@repo/config';
 
 const { Pool } = pg;
 

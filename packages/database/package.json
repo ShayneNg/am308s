@@ -1,12 +1,16 @@
 {
-  "name": "database",
+  "name": "@repo/db",
   "version": "1.0.0",
   "private": true,
-  "main": "./src/index.ts",
+  "type": "module",
+  "main": "./src/index.ts", 
+  "types": "./src/index.ts",
   "dependencies": {
-    "@prisma/client": "latest"
+    "@prisma/client": "latest",
+    "@repo/config": "workspace:*"
   },
   "devDependencies": {
-    "prisma": "latest"
+    "prisma": "latest",
+    "pg": "^8.11.0"
   }
 }

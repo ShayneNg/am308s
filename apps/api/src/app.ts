@@ -5,7 +5,7 @@ import { fastifyAwilixPlugin, diContainer } from '@fastify/awilix';
 import { asClass, asValue } from 'awilix';
 
 // Import the pool creator
-import { createDatabasePool } from './infrastructure/database.js';
+import { createDatabasePool } from '@repo/db';
 
 import { EchoRepository } from './repositories/echo.repository.js';
 import { EchoService } from './services/echo.service.js';
@@ -22,10 +22,6 @@ import { IngestRepository } from './repositories/ingest.repository.js';
 import { IngestService } from './services/ingest.service.js';
 import { IngestController } from './controllers/ingest.controller.js';
 import { ingestRoutes } from './routes/ingest.routes.js';
-
-// 2. Import SvelteKit handler (This is generated after build)
-// @ts-ignore
-import { handler } from '../../build/handler.js';
 
 export function buildApp() {
   // Check if we are currently running tests

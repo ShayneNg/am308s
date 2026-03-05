@@ -1,4 +1,4 @@
-import { buildApp } from './api/app';
+import { buildApp } from './app';
 
 const server = buildApp();
 
@@ -19,4 +19,4 @@ const start = async () => {
   }
 };
 
-start();
+start();2222

@@ -27,6 +27,10 @@ pnpm-debug.log*
 # --- Database & Prisma ---
 /packages/database/prisma/*.db
 /packages/database/prisma/*.db-journal
+
+# --- Config ---
+/packages/config/env.config.ts
+
 # If you generate Prisma client to a custom path:
 # generated-client/
 

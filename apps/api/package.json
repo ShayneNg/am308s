@@ -17,7 +17,7 @@
     "@fastify/middie": "^9.1.0",
     "zod": "^3.23.0",
     "shared-types": "workspace:*", 
-    "database": "workspace:*"
+    "@repo/db": "workspace:*"
   },
   "devDependencies": {
     "tsx": "^4.19.2",
