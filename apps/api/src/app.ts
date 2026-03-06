@@ -110,17 +110,5 @@ export function buildApp() {
     });
   });
 
-  // --- SVELTEKIT HANDOFF ---
-  // If the request isn't an API call, let SvelteKit handle it
-  app.use((req, res, next) => {
-    // If request starts with /api, it should have been caught by Fastify. 
-    // Otherwise, give it to SvelteKit.
-    if (req.url?.startsWith('/api')) {
-      next();
-    } else {
-      handler(req, res, next);
-    }
-  });
-
   return app;
 }

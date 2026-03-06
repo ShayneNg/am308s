@@ -1,4 +1,4 @@
-import { config } from '../config/env.config.js';
+import { config } from '@repo/config';
 import { IngestRepository } from '../repositories/ingest.repository.js';
 
 export class IngestService {

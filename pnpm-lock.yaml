@@ -26,9 +26,9 @@ importers:
       '@fastify/middie':
         specifier: ^9.1.0
         version: 9.2.0
-      '@repo/db':
+      '@repo/config':
         specifier: workspace:*
-        version: link:../../packages/database
+        version: link:../../packages/config
       awilix:
         specifier: ^13.0.0
         version: 13.0.1
@@ -149,7 +149,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2(svelte@5.53.6)(vitest@4.0.18)
 
-  packages/config: {}
+  packages/config:
+    dependencies:
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.6.1
 
   packages/database:
     dependencies:

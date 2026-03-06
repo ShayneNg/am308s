@@ -2,5 +2,8 @@
   "name": "@repo/config",
   "version": "1.0.0",
   "type": "module",
-  "main": "./env.config.js"
+  "main": "./env.config.js",
+  "dependencies": {
+    "dotenv": "^16.4.5" 
+  }
 }
